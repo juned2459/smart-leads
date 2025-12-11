@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import InputForm from "./components/InputForm";
 import LeadsTable from "./components/LeadsTable";
 import { getAllLeads, processNames } from "./api";
+import { toast } from 'react-toastify';
 
 export default function App() {
   const [leads, setLeads] = useState([]);
@@ -16,6 +17,7 @@ export default function App() {
   const handleLeadSubmit = async (names) => {
     const resp = await processNames(names);
     if (resp.success) {
+      toast.success("Names processed successfully");
       await loadData();
     }
   };
